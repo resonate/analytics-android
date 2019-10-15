@@ -13,7 +13,7 @@
   ~
   ~ The above copyright notice and this permission notice shall be included in all
   ~ copies or substantial portions of the Software.
-  ~
+  ~F
   ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
   ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
   ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -24,7 +24,7 @@
   -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.segment.analytics.sample">
+    package="com.resonate.analytics.sample">
 
   <!-- Required for internet. -->
   <uses-permission android:name="android.permission.INTERNET"/>
@@ -57,7 +57,7 @@
     </activity>
 
     <service
-        android:name="com.segment.analytics.PhoneAnalyticsListenerService">
+        android:name="com.resonate.analytics.PhoneAnalyticsListenerService">
       <intent-filter>
         <action android:name="com.google.android.gms.wearable.DATA_CHANGED" />
         <action android:name="com.google.android.gms.wearable.MESSAGE_RECEIVED" />

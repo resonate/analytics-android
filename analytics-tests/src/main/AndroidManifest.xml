@@ -24,6 +24,6 @@
   -->
 
 <manifest
-    package="com.segment.analytics.core.tests">
+    package="com.resonate.analytics.core.tests">
   <application/>
 </manifest>
