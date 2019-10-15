@@ -46,10 +46,11 @@ public class ConnectionFactory {
     return "Basic " + Base64.encodeToString((writeKey + ":").getBytes(), Base64.NO_WRAP);
   }
 
-  /** Return a {@link HttpURLConnection} that reads JSON formatted project settings. */
-  public HttpURLConnection projectSettings(String writeKey) throws IOException {
-    return openConnection("https://cdn-settings.segment.com/v1/projects/" + writeKey + "/settings");
-  }
+//  Fetching project settings over the network not supported.
+//  /** Return a {@link HttpURLConnection} that reads JSON formatted project settings. */
+//  public HttpURLConnection projectSettings(String writeKey) throws IOException {
+//    return openConnection("https://cdn-settings.segment.com/v1/projects/" + writeKey + "/settings");
+//  }
 
   /**
    * Return a {@link HttpURLConnection} that writes batched payloads to {@code
@@ -64,18 +65,19 @@ public class ConnectionFactory {
     return connection;
   }
 
-  /**
-   * Return a {@link HttpURLConnection} that writes gets attribution information from {@code
-   * https://mobile-service.segment.com/attribution}.
-   */
-  public HttpURLConnection attribution(String writeKey) throws IOException {
-    HttpURLConnection connection =
-        openConnection("https://mobile-service.segment.com/v1/attribution");
-    connection.setRequestProperty("Authorization", authorizationHeader(writeKey));
-    connection.setRequestMethod("POST");
-    connection.setDoOutput(true);
-    return connection;
-  }
+//  Attribution not supported.
+//  /**
+//   * Return a {@link HttpURLConnection} that writes gets attribution information from {@code
+//   * https://mobile-service.segment.com/attribution}.
+//   */
+//  public HttpURLConnection attribution(String writeKey) throws IOException {
+//    HttpURLConnection connection =
+//        openConnection("https://mobile-service.segment.com/v1/attribution");
+//    connection.setRequestProperty("Authorization", authorizationHeader(writeKey));
+//    connection.setRequestMethod("POST");
+//    connection.setDoOutput(true);
+//    return connection;
+//  }
 
   /**
    * Configures defaults for connections opened with {@link #upload(String)}, {@link

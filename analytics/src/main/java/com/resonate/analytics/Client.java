@@ -91,21 +91,22 @@ class Client {
     HttpURLConnection connection = connectionFactory.upload(writeKey);
     return createPostConnection(connection);
   }
+//  Attribution not supported.
+//  Connection attribution() throws IOException {
+//    HttpURLConnection connection = connectionFactory.attribution(writeKey);
+//    return createPostConnection(connection);
+//  }
 
-  Connection attribution() throws IOException {
-    HttpURLConnection connection = connectionFactory.attribution(writeKey);
-    return createPostConnection(connection);
-  }
-
-  Connection fetchSettings() throws IOException {
-    HttpURLConnection connection = connectionFactory.projectSettings(writeKey);
-    int responseCode = connection.getResponseCode();
-    if (responseCode != HTTP_OK) {
-      connection.disconnect();
-      throw new IOException("HTTP " + responseCode + ": " + connection.getResponseMessage());
-    }
-    return createGetConnection(connection);
-  }
+//  Fetching setting over the network not supported.
+//  Connection fetchSettings() throws IOException {
+//    HttpURLConnection connection = connectionFactory.projectSettings(writeKey);
+//    int responseCode = connection.getResponseCode();
+//    if (responseCode != HTTP_OK) {
+//      connection.disconnect();
+//      throw new IOException("HTTP " + responseCode + ": " + connection.getResponseMessage());
+//    }
+//    return createGetConnection(connection);
+//  }
 
   /** Represents an HTTP exception thrown for unexpected/non 2xx response codes. */
   static class HTTPException extends IOException {

@@ -106,20 +106,21 @@ public class ClientTest {
         .containsHeader("Authorization", "Basic Zm9vOg==");
   }
 
-  @Test
-  public void attribution() throws Exception {
-    server.enqueue(new MockResponse());
-
-    Client.Connection connection = client.attribution();
-    assertThat(connection.os).isNotNull();
-    assertThat(connection.is).isNull();
-    assertThat(connection.connection.getResponseCode()).isEqualTo(200); // consume the response.
-    RecordedRequestAssert.assertThat(server.takeRequest())
-        .hasRequestLine("POST /v1/attribution HTTP/1.1")
-        .containsHeader("User-Agent", ConnectionFactory.USER_AGENT)
-        .containsHeader("Content-Type", "application/json")
-        .containsHeader("Authorization", "Basic Zm9vOg==");
-  }
+//  Attribution not supported.
+//  @Test
+//  public void attribution() throws Exception {
+//    server.enqueue(new MockResponse());
+//
+//    Client.Connection connection = client.attribution();
+//    assertThat(connection.os).isNotNull();
+//    assertThat(connection.is).isNull();
+//    assertThat(connection.connection.getResponseCode()).isEqualTo(200); // consume the response.
+//    RecordedRequestAssert.assertThat(server.takeRequest())
+//        .hasRequestLine("POST /v1/attribution HTTP/1.1")
+//        .containsHeader("User-Agent", ConnectionFactory.USER_AGENT)
+//        .containsHeader("Content-Type", "application/json")
+//        .containsHeader("Authorization", "Basic Zm9vOg==");
+//  }
 
   @Test
   public void closingUploadConnectionClosesStreams() throws Exception {
@@ -206,47 +207,50 @@ public class ClientTest {
     verify(os).close();
   }
 
-  @Test
-  public void fetchSettings() throws Exception {
-    server.enqueue(new MockResponse());
+//  Fetching settings over the network not supported.
+//  @Test
+//  public void fetchSettings() throws Exception {
+//    server.enqueue(new MockResponse());
+//
+//    Client.Connection connection = client.fetchSettings();
+//    assertThat(connection.os).isNull();
+//    assertThat(connection.is).isNotNull();
+//    assertThat(connection.connection.getResponseCode()).isEqualTo(200);
+//    RecordedRequestAssert.assertThat(server.takeRequest())
+//        .hasRequestLine("GET /v1/projects/foo/settings HTTP/1.1")
+//        .containsHeader("User-Agent", ConnectionFactory.USER_AGENT)
+//        .containsHeader("Content-Type", "application/json");
+//  }
 
-    Client.Connection connection = client.fetchSettings();
-    assertThat(connection.os).isNull();
-    assertThat(connection.is).isNotNull();
-    assertThat(connection.connection.getResponseCode()).isEqualTo(200);
-    RecordedRequestAssert.assertThat(server.takeRequest())
-        .hasRequestLine("GET /v1/projects/foo/settings HTTP/1.1")
-        .containsHeader("User-Agent", ConnectionFactory.USER_AGENT)
-        .containsHeader("Content-Type", "application/json");
-  }
+//  Fetching settings over the network not supported.
+//  @Test
+//  public void fetchSettingsFailureClosesStreamsAndThrowsException() throws Exception {
+//    when(mockConnection.getResponseCode()).thenReturn(204);
+//    when(mockConnection.getResponseMessage()) //
+//        .thenReturn("no cookies for you http://bit.ly/1EMHBNb");
+//
+//    try {
+//      mockClient.fetchSettings();
+//      fail("Non 200 return code should throw an exception");
+//    } catch (IOException e) {
+//      assertThat(e).hasMessage("HTTP " + 204 + ": no cookies for you http://bit.ly/1EMHBNb");
+//    }
+//    verify(mockConnection).disconnect();
+//  }
 
-  @Test
-  public void fetchSettingsFailureClosesStreamsAndThrowsException() throws Exception {
-    when(mockConnection.getResponseCode()).thenReturn(204);
-    when(mockConnection.getResponseMessage()) //
-        .thenReturn("no cookies for you http://bit.ly/1EMHBNb");
-
-    try {
-      mockClient.fetchSettings();
-      fail("Non 200 return code should throw an exception");
-    } catch (IOException e) {
-      assertThat(e).hasMessage("HTTP " + 204 + ": no cookies for you http://bit.ly/1EMHBNb");
-    }
-    verify(mockConnection).disconnect();
-  }
-
-  @Test
-  public void closingFetchSettingsClosesStreams() throws Exception {
-    InputStream is = mock(InputStream.class);
-    when(mockConnection.getInputStream()).thenReturn(is);
-    when(mockConnection.getResponseCode()).thenReturn(200);
-
-    Client.Connection connection = mockClient.fetchSettings();
-
-    connection.close();
-    verify(mockConnection).disconnect();
-    verify(is).close();
-  }
+//  Fetching settings over the network not supported.
+//  @Test
+//  public void closingFetchSettingsClosesStreams() throws Exception {
+//    InputStream is = mock(InputStream.class);
+//    when(mockConnection.getInputStream()).thenReturn(is);
+//    when(mockConnection.getResponseCode()).thenReturn(200);
+//
+//    Client.Connection connection = mockClient.fetchSettings();
+//
+//    connection.close();
+//    verify(mockConnection).disconnect();
+//    verify(is).close();
+//  }
 
   static class RecordedRequestAssert
       extends AbstractAssert<RecordedRequestAssert, RecordedRequest> {

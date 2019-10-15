@@ -72,16 +72,16 @@ class AnalyticsActivityLifecycleCallbacks implements Application.ActivityLifecyc
       numberOfActivities.set(0);
       firstLaunch.set(true);
       analytics.trackApplicationLifecycleEvents();
-
-      if (trackAttributionInformation) {
-        analyticsExecutor.submit(
-            new Runnable() {
-              @Override
-              public void run() {
-                analytics.trackAttributionInformation();
-              }
-            });
-      }
+// Attribution is not Supported
+//      if (trackAttributionInformation) {
+//        analyticsExecutor.submit(
+//            new Runnable() {
+//              @Override
+//              public void run() {
+//                analytics.trackAttributionInformation();
+//              }
+//            });
+//      }
     }
   }
 
