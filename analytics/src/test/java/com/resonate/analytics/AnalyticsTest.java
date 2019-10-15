@@ -241,37 +241,39 @@ public class AnalyticsTest {
                 }));
   }
 
-  @Test
-  public void invalidGroup() {
-    try {
-      analytics.group(null);
-      fail("null groupId should throw exception");
-    } catch (IllegalArgumentException expected) {
-      assertThat(expected).hasMessage("groupId must not be null or empty.");
-    }
+//  Group API Not Supported.
+//  @Test
+//  public void invalidGroup() {
+//    try {
+//      analytics.group(null);
+//      fail("null groupId should throw exception");
+//    } catch (IllegalArgumentException expected) {
+//      assertThat(expected).hasMessage("groupId must not be null or empty.");
+//    }
+//
+//    try {
+//      analytics.group("");
+//      fail("empty groupId and name should throw exception");
+//    } catch (IllegalArgumentException expected) {
+//      assertThat(expected).hasMessage("groupId must not be null or empty.");
+//    }
+//  }
 
-    try {
-      analytics.group("");
-      fail("empty groupId and name should throw exception");
-    } catch (IllegalArgumentException expected) {
-      assertThat(expected).hasMessage("groupId must not be null or empty.");
-    }
-  }
-
-  @Test
-  public void group() {
-    analytics.group("segment", new Traits().putEmployees(42), null);
-
-    verify(integration)
-        .group(
-            argThat(
-                new NoDescriptionMatcher<GroupPayload>() {
-                  @Override
-                  protected boolean matchesSafely(GroupPayload item) {
-                    return item.groupId().equals("segment") && item.traits().employees() == 42;
-                  }
-                }));
-  }
+//  Group API Not Supported.
+//  @Test
+//  public void group() {
+//    analytics.group("segment", new Traits().putEmployees(42), null);
+//
+//    verify(integration)
+//        .group(
+//            argThat(
+//                new NoDescriptionMatcher<GroupPayload>() {
+//                  @Override
+//                  protected boolean matchesSafely(GroupPayload item) {
+//                    return item.groupId().equals("segment") && item.traits().employees() == 42;
+//                  }
+//                }));
+//  }
 
   @Test
   public void invalidTrack() {
@@ -342,17 +344,17 @@ public class AnalyticsTest {
   public void optionsDisableIntegrations() {
     analytics.screen("foo", "bar", null, new Options().setIntegration("test", false));
     analytics.track("foo", null, new Options().setIntegration("test", false));
-    analytics.group("foo", null, new Options().setIntegration("test", false));
+//    analytics.group("foo", null, new Options().setIntegration("test", false));
     analytics.identify("foo", null, new Options().setIntegration("test", false));
-    analytics.alias("foo", new Options().setIntegration("test", false));
+//    analytics.alias("foo", new Options().setIntegration("test", false));
 
     analytics.screen(
         "foo", "bar", null, new Options().setIntegration(Options.ALL_INTEGRATIONS_KEY, false));
     analytics.track("foo", null, new Options().setIntegration(Options.ALL_INTEGRATIONS_KEY, false));
-    analytics.group("foo", null, new Options().setIntegration(Options.ALL_INTEGRATIONS_KEY, false));
+//    analytics.group("foo", null, new Options().setIntegration(Options.ALL_INTEGRATIONS_KEY, false));
     analytics.identify(
         "foo", null, new Options().setIntegration(Options.ALL_INTEGRATIONS_KEY, false));
-    analytics.alias("foo", new Options().setIntegration(Options.ALL_INTEGRATIONS_KEY, false));
+//    analytics.alias("foo", new Options().setIntegration(Options.ALL_INTEGRATIONS_KEY, false));
 
     verifyNoMoreInteractions(integration);
   }
@@ -548,27 +550,29 @@ public class AnalyticsTest {
     verifyNoMoreInteractions(integration);
   }
 
-  @Test
-  public void invalidAlias() {
-    try {
-      analytics.alias(null);
-      fail("null new id should throw error");
-    } catch (IllegalArgumentException expected) {
-      assertThat(expected).hasMessage("newId must not be null or empty.");
-    }
-  }
+//  Alias API Not Supported.
+//  @Test
+//  public void invalidAlias() {
+//    try {
+//      analytics.alias(null);
+//      fail("null new id should throw error");
+//    } catch (IllegalArgumentException expected) {
+//      assertThat(expected).hasMessage("newId must not be null or empty.");
+//    }
+//  }
 
-  @Test
-  public void alias() {
-    String anonymousId = traits.anonymousId();
-    analytics.alias("foo");
-    ArgumentCaptor<AliasPayload> payloadArgumentCaptor =
-        ArgumentCaptor.forClass(AliasPayload.class);
-    verify(integration).alias(payloadArgumentCaptor.capture());
-    Assertions.assertThat(payloadArgumentCaptor.getValue())
-        .containsEntry("previousId", anonymousId)
-        .containsEntry("userId", "foo");
-  }
+//  Alias API Not Supported.
+//  @Test
+//  public void alias() {
+//    String anonymousId = traits.anonymousId();
+//    analytics.alias("foo");
+//    ArgumentCaptor<AliasPayload> payloadArgumentCaptor =
+//        ArgumentCaptor.forClass(AliasPayload.class);
+//    verify(integration).alias(payloadArgumentCaptor.capture());
+//    Assertions.assertThat(payloadArgumentCaptor.getValue())
+//        .containsEntry("previousId", anonymousId)
+//        .containsEntry("userId", "foo");
+//  }
 
   @Test
   public void flush() {

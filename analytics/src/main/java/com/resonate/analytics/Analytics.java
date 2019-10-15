@@ -472,62 +472,65 @@ public class Analytics {
         });
   }
 
-  /** @see #group(String, Traits, Options) */
-  public void group(@NonNull String groupId) {
-    group(groupId, null, null);
-  }
+//  Group API Not Supported
+//  /** @see #group(String, Traits, Options) */
+//  public void group(@NonNull String groupId) {
+//    group(groupId, null, null);
+//  }
 
-  /** @see #group(String, Traits, Options) */
-  public void group(@NonNull String groupId, @Nullable Traits traits) {
-    group(groupId, traits, null);
-  }
+//  Group API Not Supported
+//  /** @see #group(String, Traits, Options) */
+//  public void group(@NonNull String groupId, @Nullable Traits traits) {
+//    group(groupId, traits, null);
+//  }
 
-  /**
-   * The group method lets you associate a user with a group. It also lets you record custom traits
-   * about the group, like industry or number of employees.
-   *
-   * <p>If you've called {@link #identify(String, Traits, Options)} before, this will automatically
-   * remember the userId. If not, it will fall back to use the anonymousId instead.
-   *
-   * @param groupId Unique identifier which you recognize a group by in your own database. Must not
-   *     be null or empty.
-   * @param options To configure the call.
-   * @throws IllegalArgumentException if groupId is null or an empty string.
-   * @see <a href="https://segment.com/docs/spec/group/">Group Documentation</a>
-   */
-  public void group(
-      @NonNull final String groupId,
-      @Nullable final Traits groupTraits,
-      @Nullable final Options options) {
-    assertNotShutdown();
-    if (isNullOrEmpty(groupId)) {
-      throw new IllegalArgumentException("groupId must not be null or empty.");
-    }
-
-    analyticsExecutor.submit(
-        new Runnable() {
-          @Override
-          public void run() {
-            final Traits finalGroupTraits;
-            if (groupTraits == null) {
-              finalGroupTraits = new Traits();
-            } else {
-              finalGroupTraits = groupTraits;
-            }
-
-            final Options finalOptions;
-            if (options == null) {
-              finalOptions = defaultOptions;
-            } else {
-              finalOptions = options;
-            }
-
-            GroupPayload.Builder builder =
-                new GroupPayload.Builder().groupId(groupId).traits(finalGroupTraits);
-            fillAndEnqueue(builder, finalOptions);
-          }
-        });
-  }
+//  Group API Not Supported
+//  /**
+//   * The group method lets you associate a user with a group. It also lets you record custom traits
+//   * about the group, like industry or number of employees.
+//   *
+//   * <p>If you've called {@link #identify(String, Traits, Options)} before, this will automatically
+//   * remember the userId. If not, it will fall back to use the anonymousId instead.
+//   *
+//   * @param groupId Unique identifier which you recognize a group by in your own database. Must not
+//   *     be null or empty.
+//   * @param options To configure the call.
+//   * @throws IllegalArgumentException if groupId is null or an empty string.
+//   * @see <a href="https://segment.com/docs/spec/group/">Group Documentation</a>
+//   */
+//  public void group(
+//      @NonNull final String groupId,
+//      @Nullable final Traits groupTraits,
+//      @Nullable final Options options) {
+//    assertNotShutdown();
+//    if (isNullOrEmpty(groupId)) {
+//      throw new IllegalArgumentException("groupId must not be null or empty.");
+//    }
+//
+//    analyticsExecutor.submit(
+//        new Runnable() {
+//          @Override
+//          public void run() {
+//            final Traits finalGroupTraits;
+//            if (groupTraits == null) {
+//              finalGroupTraits = new Traits();
+//            } else {
+//              finalGroupTraits = groupTraits;
+//            }
+//
+//            final Options finalOptions;
+//            if (options == null) {
+//              finalOptions = defaultOptions;
+//            } else {
+//              finalOptions = options;
+//            }
+//
+//            GroupPayload.Builder builder =
+//                new GroupPayload.Builder().groupId(groupId).traits(finalGroupTraits);
+//            fillAndEnqueue(builder, finalOptions);
+//          }
+//        });
+//  }
 
   /** @see #track(String, Properties, Options) */
   public void track(@NonNull String event) {
@@ -660,55 +663,57 @@ public class Analytics {
         });
   }
 
-  /** @see #alias(String, Options) */
-  public void alias(@NonNull String newId) {
-    alias(newId, null);
-  }
+//  Alias API Not Supported.
+//  /** @see #alias(String, Options) */
+//  public void alias(@NonNull String newId) {
+//    alias(newId, null);
+//  }
 
-  /**
-   * The alias method is used to merge two user identities, effectively connecting two sets of user
-   * data as one. This is an advanced method, but it is required to manage user identities
-   * successfully in some of our integrations.
-   *
-   * <p>Usage:
-   *
-   * <pre> <code>
-   *   analytics.track("user did something");
-   *   analytics.alias(newId);
-   *   analytics.identify(newId);
-   * </code> </pre>
-   *
-   * @param newId The new ID you want to alias the existing ID to. The existing ID will be either
-   *     the previousId if you have called identify, or the anonymous ID.
-   * @param options To configure the call
-   * @throws IllegalArgumentException if newId is null or empty
-   * @see <a href="https://segment.com/docs/tracking-api/alias/">Alias Documentation</a>
-   */
-  public void alias(final @NonNull String newId, final @Nullable Options options) {
-    assertNotShutdown();
-    if (isNullOrEmpty(newId)) {
-      throw new IllegalArgumentException("newId must not be null or empty.");
-    }
-
-    analyticsExecutor.submit(
-        new Runnable() {
-          @Override
-          public void run() {
-            final Options finalOptions;
-            if (options == null) {
-              finalOptions = defaultOptions;
-            } else {
-              finalOptions = options;
-            }
-
-            AliasPayload.Builder builder =
-                new AliasPayload.Builder()
-                    .userId(newId)
-                    .previousId(analyticsContext.traits().currentId());
-            fillAndEnqueue(builder, finalOptions);
-          }
-        });
-  }
+//  Alias API Not Supported.
+//  /**
+//   * The alias method is used to merge two user identities, effectively connecting two sets of user
+//   * data as one. This is an advanced method, but it is required to manage user identities
+//   * successfully in some of our integrations.
+//   *
+//   * <p>Usage:
+//   *
+//   * <pre> <code>
+//   *   analytics.track("user did something");
+//   *   analytics.alias(newId);
+//   *   analytics.identify(newId);
+//   * </code> </pre>
+//   *
+//   * @param newId The new ID you want to alias the existing ID to. The existing ID will be either
+//   *     the previousId if you have called identify, or the anonymous ID.
+//   * @param options To configure the call
+//   * @throws IllegalArgumentException if newId is null or empty
+//   * @see <a href="https://segment.com/docs/tracking-api/alias/">Alias Documentation</a>
+//   */
+//  public void alias(final @NonNull String newId, final @Nullable Options options) {
+//    assertNotShutdown();
+//    if (isNullOrEmpty(newId)) {
+//      throw new IllegalArgumentException("newId must not be null or empty.");
+//    }
+//
+//    analyticsExecutor.submit(
+//        new Runnable() {
+//          @Override
+//          public void run() {
+//            final Options finalOptions;
+//            if (options == null) {
+//              finalOptions = defaultOptions;
+//            } else {
+//              finalOptions = options;
+//            }
+//
+//            AliasPayload.Builder builder =
+//                new AliasPayload.Builder()
+//                    .userId(newId)
+//                    .previousId(analyticsContext.traits().currentId());
+//            fillAndEnqueue(builder, finalOptions);
+//          }
+//        });
+//  }
 
   private void waitForAdvertisingId() {
     try {
